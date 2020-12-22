@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ developtest ]
+    branches: [ develop-acttest ]
   pull_request:
-    branches: [ develop ]
+    branches: [ develop-acttest ]
   release:
     types: [ published ]
 
