@@ -34,13 +34,13 @@ jobs:
       run: dotnet clean && dotnet nuget locals all --clear
 
 
-    - name: Get strong name key
-      id: get_strong_name
-      uses: timheuer/base64-to-file@v1
-      if: github.event_name == 'release' || github.event_name == 'push'
-      with:
-        fileName: 'Portable.Xaml.snk'
-        encodedString: ${{ secrets.STRONG_NAME_KEY }}
+#    - name: Get strong name key
+#      id: get_strong_name
+#      uses: timheuer/base64-to-file@v1
+#      if: github.event_name == 'release' || github.event_name == 'push'
+#      with:
+#        fileName: 'Portable.Xaml.snk'
+#        encodedString: ${{ secrets.STRONG_NAME_KEY }}
     
     - name: Build
       run: dotnet build ${{ env.PlatformBuildParameters }} ${{ env.BuildParameters }} "/p:AssemblyOriginatorKeyFile=${{ steps.get_strong_name.outputs.filePath }}"
