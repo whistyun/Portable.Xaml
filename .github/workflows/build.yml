@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ develop-acttest ]
   pull_request:
-    branches: [ develop ]
+    branches: [ develop-acttest ]
   release:
     types: [ published ]
 
@@ -29,6 +29,10 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.403
+
+    - name: Clear package cache as a temporary workaround for actions/setup-dotnet#155
+      run: dotnet clean && dotnet nuget locals all --clear
+
 
     - name: Get strong name key
       id: get_strong_name
